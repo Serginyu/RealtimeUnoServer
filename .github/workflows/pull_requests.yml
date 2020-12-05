@@ -31,12 +31,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
       - name: Get the coverage
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         run: |
           echo "::set-env name=CODE_COVERAGE::$(   ./coverage.sh)"
       - name: Create Lines-of-Code-Badge
         uses: schneegans/dynamic-badges-action@v1.0.0
-        env:
-          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         with:
           auth: ${{ secrets.GIST_SECRET }}
           gistID: <gist-ID>
