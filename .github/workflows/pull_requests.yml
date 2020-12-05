@@ -37,6 +37,7 @@ jobs:
         uses: schneegans/dynamic-badges-action@v1.0.0
         with:
           auth: ${{ secrets.GIST_SECRET }}
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: true
           gistID: <gist-ID>
           filename: loc.json
           label: Code coverage
