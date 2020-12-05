@@ -12,8 +12,9 @@ jobs:
         node-version: [10.x, 12.x]
 
     steps:
+      - name: Install sudo package
+        run: apt update && apt install sudo
       - uses: actions/checkout@v2
-
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -26,8 +27,7 @@ jobs:
       - name: Get the coverage
         env:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
-        run: |
-          sudo echo "::set-env name=CODE_COVERAGE::$(sudo ./coverage.sh)"
+        run: sudo echo "::set-env name=CODE_COVERAGE::$(sudo ./coverage.sh)"
       - name: Create Lines-of-Code-Badge
         uses: schneegans/dynamic-badges-action@v1.0.0
         with:
